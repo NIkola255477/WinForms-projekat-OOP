@@ -71,6 +71,7 @@ namespace oop_p_k
         protected string BrojLeta { get; set; }
         protected double BrojMesta { get; set; }
         protected string Kompanija { get; set; }
+        List<korisnik> Rezervacije { get; set; }
         public Let(string polaziste, string odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija)
         {
             Polaziste = polaziste;
@@ -80,6 +81,7 @@ namespace oop_p_k
             BrojLeta = brojLeta;
             BrojMesta = brojMesta;
             Kompanija = kompanija;
+            Rezervacije = new List<korisnik>();
         }
         public abstract double IzracunajTrajanjeLeta();
         public abstract double IzracunajCenuKarte();

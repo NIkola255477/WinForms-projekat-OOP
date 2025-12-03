@@ -72,9 +72,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(15, 188);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(78, 27);
             this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
+            this.button1.Text = "Log in";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // checkBox1
@@ -86,6 +86,7 @@
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "vidljivost-sifre";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
