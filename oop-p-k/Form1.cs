@@ -34,5 +34,48 @@ namespace oop_p_k
                 textBox2.UseSystemPasswordChar = true;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Unesite korisnicko ime i lozinku!", "Greska",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            foreach (var a in objekti.Admini.Values)
+            {
+                if (a.ProveraUsera(username) && a.ProveraLozinke(password))
+                {
+                    MessageBox.Show("Uspesno ste se prijavili kao admin!");
+                    this.Hide();
+                    Admin formAdmin = new Admin();
+                    formAdmin.ShowDialog();
+                    this.Close();
+                    return;
+                }
+            }
+            foreach (var korisnik in objekti.Korisnici.Values)
+            {
+                if (korisnik.ProveraLozinke(password) && korisnik.ProveraUsera(username))
+                {
+                    MessageBox.Show("Uspesno ste se prijavili kao korisnik!");
+                    this.Hide();
+                    Korisnik formKorisnik = new Korisnik();
+                    formKorisnik.ShowDialog();
+                    this.Close();
+                    return;
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            sign_up sign_Up = new sign_up();
+            sign_Up.ShowDialog();
+            this.Close();
+        }
     }
 }

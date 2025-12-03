@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,8 +39,9 @@ namespace oop_p_k
         protected string Lozinka { get; set; }
         protected string BrojTelefona { get; set; }
         protected string BrojPasosa { get; set; }
+        protected string Username { get; set; }
         protected List<Let> Rezervacije { get; set; }
-        public korisnik(string ime, string prezime, string email, string lozinka, string brojTelefona, string brojPasosa)
+        public korisnik(string ime, string prezime, string email, string lozinka, string brojTelefona, string brojPasosa, string username)
         {
             Ime = ime;
             Prezime = prezime;
@@ -48,10 +50,15 @@ namespace oop_p_k
             BrojTelefona = brojTelefona;
             BrojPasosa = brojPasosa;
             Rezervacije = new List<Let>();
+            Username = username;
         }
         public bool ProveraLozinke(string unosLozinke)
         {
             return unosLozinke == Lozinka;
+        }
+        public bool ProveraUsera(string unosUsera)
+        {
+            return unosUsera == Username;
         }
         public void PromeniLozinku(string novaLozinka)
         {
