@@ -16,5 +16,15 @@ namespace oop_p_k
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Admin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

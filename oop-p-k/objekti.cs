@@ -10,6 +10,7 @@ using System.Globalization;
 
 namespace oop_p_k
 {
+    
     public class admin
     {
         protected string Username { get; set; }
@@ -181,8 +182,12 @@ namespace oop_p_k
         private double fiksni = 5000;
         private double profit = 1.2;
         private double varTroskovi = 20;
-        public Charter(Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija)
-        :base(polaziste,odrediste,vremePolaska,vremeDolaska,brojLeta,brojMesta,kompanija){ }
+        private string posebnizahtevi { get; set; }
+        public Charter(Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija, string posebnizahtevi)
+        :base(polaziste,odrediste,vremePolaska,vremeDolaska,brojLeta,brojMesta,kompanija)
+        {
+            this.posebnizahtevi = posebnizahtevi;
+        }
         public override double IzracunajTrajanjeLeta()
         {
             return (VremeDolaska - VremePolaska).TotalHours;
@@ -215,6 +220,8 @@ namespace oop_p_k
     }
     public class objekti
     {
+        public static korisnik TrenutniKorisnik;
+        public static admin TrenutniAdmin;
         public static Dictionary<int, admin> Admini = new Dictionary<int, admin>();
         public static Dictionary<int, korisnik> Korisnici = new Dictionary<int, korisnik>();
         public static Dictionary<int, Avion> Avioni = new Dictionary<int, Avion>();

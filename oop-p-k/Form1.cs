@@ -21,6 +21,8 @@ namespace oop_p_k
         private void Form1_Load(object sender, EventArgs e)
         {
             json.Ucitaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
+            objekti.TrenutniAdmin = null;
+            objekti.TrenutniKorisnik = null;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -49,6 +51,7 @@ namespace oop_p_k
             {
                 if (a.ProveraUsera(username) && a.ProveraLozinke(password))
                 {
+                    objekti.TrenutniAdmin = a;
                     MessageBox.Show("Uspesno ste se prijavili kao admin!");
                     this.Hide();
                     Admin formAdmin = new Admin();
@@ -61,6 +64,7 @@ namespace oop_p_k
             {
                 if (korisnik.ProveraLozinke(password) && korisnik.ProveraUsera(username))
                 {
+                    objekti.TrenutniKorisnik = korisnik;
                     MessageBox.Show("Uspesno ste se prijavili kao korisnik!");
                     this.Hide();
                     Korisnik formKorisnik = new Korisnik();
