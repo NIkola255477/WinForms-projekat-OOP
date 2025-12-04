@@ -49,6 +49,11 @@ namespace oop_p_k
                 }
             }
             objekti.Korisnici.Add(objekti.Korisnici.Count,new korisnik(ime, prezime, email, lozinka, brojTelefona, brojPasosa, username));
+            json.SacuvajK(objekti.Korisnici);
+            MessageBox.Show("Uspesno ste se registrovali!");
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+            this.Close();
         }
     }
 }

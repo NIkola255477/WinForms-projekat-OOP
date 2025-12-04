@@ -121,7 +121,7 @@ namespace oop_p_k
         protected string BrojLeta { get; set; }
         protected double BrojMesta { get; set; }
         protected string Kompanija { get; set; }
-        List<korisnik> Rezervacije { get; set; }
+        protected List<korisnik> Rezervacije { get; set; }
         public Let(Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija)
         {
             Polaziste = polaziste;
@@ -138,7 +138,7 @@ namespace oop_p_k
         public abstract double IzracunajCenuKarte();
         public abstract void RezervisiKartu(korisnik k);
         public abstract void OtkaziRezervaciju(korisnik k);
-        public abstract void IzmeniLet(string novoPolaziste, string novoOdrediste, DateTime novoVremePolaska, DateTime novoVremeDolaska);
+        public abstract void IzmeniLet(Aerodrom novoPolaziste, Aerodrom novoOdrediste, DateTime novoVremePolaska, DateTime novoVremeDolaska);
     }
     public class ObicanLet : Let
     {
@@ -149,7 +149,68 @@ namespace oop_p_k
         public override double IzracunajCenuKarte()
         {
            double km = objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, Odrediste.Laditude, Odrediste.Longitude);
-           return cenaPoKilometru * km;
+           return cenaPoKilometru * km*faktor;
+        }
+        public override double IzracunajTrajanjeLeta()
+        {
+            TimeSpan trajanje = VremeDolaska - VremePolaska;
+            return trajanje.TotalHours;
+        }
+        public override double IzracunajUdaljenostLeta()
+        {
+            return objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, Odrediste.Laditude, Odrediste.Longitude);
+        }
+        public override void RezervisiKartu(korisnik k)
+        {
+            Rezervacije.Add(k);
+        }
+        public override void OtkaziRezervaciju(korisnik k)
+        {
+            Rezervacije.Remove(k);
+        }
+        public override void IzmeniLet(Aerodrom novoPolaziste, Aerodrom novoOdrediste, DateTime novoVremePolaska, DateTime novoVremeDolaska)
+        {
+            Polaziste = novoPolaziste;
+            Odrediste = novoOdrediste;
+            VremePolaska = novoVremePolaska;
+            VremeDolaska = novoVremeDolaska;
+        }
+    }
+    public class Charter : Let
+    {
+        private double fiksni = 5000;
+        private double profit = 1.2;
+        private double varTroskovi = 20;
+        public Charter(Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija)
+        :base(polaziste,odrediste,vremePolaska,vremeDolaska,brojLeta,brojMesta,kompanija){ }
+        public override double IzracunajTrajanjeLeta()
+        {
+            return (VremeDolaska - VremePolaska).TotalHours;
+        }
+        public override double IzracunajUdaljenostLeta()
+        {
+            return objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, Odrediste.Laditude, Odrediste.Longitude);
+        }
+        public override double IzracunajCenuKarte()
+        {
+            double km = objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, Odrediste.Laditude, Odrediste.Longitude);
+            double ukupniTroskovi = fiksni + (varTroskovi * km);
+            return (ukupniTroskovi / BrojMesta) * profit;
+        }
+        public override void RezervisiKartu(korisnik k)
+        {
+            Rezervacije.Add(k);
+        }
+        public override void OtkaziRezervaciju(korisnik k)
+        {
+            Rezervacije.Remove(k);
+        }
+        public override void IzmeniLet(Aerodrom novoPolaziste, Aerodrom novoOdrediste, DateTime novoVremePolaska, DateTime novoVremeDolaska)
+        {
+            Polaziste = novoPolaziste;
+            Odrediste = novoOdrediste;
+            VremePolaska = novoVremePolaska;
+            VremeDolaska = novoVremeDolaska;
         }
     }
     public class objekti
