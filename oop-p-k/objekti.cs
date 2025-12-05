@@ -89,9 +89,9 @@ namespace oop_p_k
         private int Kapacitet { get; set; }
         private double MaksimalnaDuzinaLeta { get; set; }
         private bool Dostupan { get; set; }
-        private string MestoSkladistenja { get; set; }
+        private Aerodrom MestoSkladistenja { get; set; }
         private double PotrosnjaGorivapoH { get; set; }
-        public Avion(string markaModel, int kapacitet, double maksimalnaDuzinaLeta, bool dostupan, string mestoSkladistenja, double potrosnjaGorivapoH)
+        public Avion(string markaModel, int kapacitet, double maksimalnaDuzinaLeta, bool dostupan, Aerodrom mestoSkladistenja, double potrosnjaGorivapoH)
         {
             MarkaModel = markaModel;
             Kapacitet = kapacitet;
