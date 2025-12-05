@@ -56,6 +56,18 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="aerodromi.cs" />
+    <Compile Include="doadavanjeLeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doadavanjeLeta.Designer.cs">
+      <DependentUpon>doadavanjeLeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dodavanje aviona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dodavanje aviona.Designer.cs">
+      <DependentUpon>dodavanje aviona.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +92,12 @@
     </Compile>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doadavanjeLeta.resx">
+      <DependentUpon>doadavanjeLeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dodavanje aviona.resx">
+      <DependentUpon>dodavanje aviona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

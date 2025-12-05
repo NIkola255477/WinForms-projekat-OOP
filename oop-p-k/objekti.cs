@@ -82,6 +82,11 @@ namespace oop_p_k
             Laditude = laditude;
             Longitude = longitude;
         }
+        
+        public override string ToString()
+        {
+            return $"{Grad} ({Naziv}) - {Drzava}";
+        }
     }
     public class Avion
     {
