@@ -23,8 +23,8 @@ namespace oop_p_k
             json.Ucitaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             objekti.TrenutniAdmin = null;
             objekti.TrenutniKorisnik = null;
+            objekti.UlogovanAdmin = false;
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)

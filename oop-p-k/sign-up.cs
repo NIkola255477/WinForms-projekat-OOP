@@ -48,7 +48,7 @@ namespace oop_p_k
                     return;
                 }
             }
-            objekti.Korisnici.Add(objekti.Korisnici.Count,new korisnik(ime, prezime, email, lozinka, brojTelefona, brojPasosa, username));
+            objekti.Korisnici.Add(brT,new korisnik(ime, prezime, email, lozinka, brT, brojPasosa, username));
             json.SacuvajK(objekti.Korisnici);
             MessageBox.Show("Uspesno ste se registrovali!");
             Form1 form1 = new Form1();
