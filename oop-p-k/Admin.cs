@@ -132,5 +132,12 @@ namespace oop_p_k
                 
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 forma1 = new Form1();
+            this.Close();
+            forma1.Show();
+        }
     }
 }
