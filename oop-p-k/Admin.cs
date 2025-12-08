@@ -179,5 +179,62 @@ namespace oop_p_k
             this.Close();
             forma1.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (!letovi)
+            {
+                MessageBox.Show("Prvo ucitajte letove!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate selektovati let koji zelite da obrisete!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Let selektovaniLet = dataGridView1.SelectedRows[0].DataBoundItem as Let;
+
+            if (selektovaniLet == null)
+            {
+                MessageBox.Show("Greska pri izboru leta!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+                int kljucZaBrisanje = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet).Key;
+
+                if (objekti.Letovi.Remove(kljucZaBrisanje))
+                {
+                    MessageBox.Show("Let je uspesno obrisan!", "Uspeh",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UcitajLetove();
+                }
+                else
+                {
+                    MessageBox.Show("Greska pri brisanju leta!", "Greska",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
+            this.Hide();
+            dodavanjeLeta.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            dodavanje_aviona dodavanje_Aviona = new dodavanje_aviona();
+            this.Hide();
+            dodavanje_Aviona.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
+            this.Hide();
+            dodavanjeLeta.Show();
+        }
     }
 }

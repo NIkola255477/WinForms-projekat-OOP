@@ -108,6 +108,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "izmeni let";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -129,6 +130,7 @@
             this.button7.TabIndex = 7;
             this.button7.Text = "dodaj let";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
@@ -139,6 +141,7 @@
             this.button8.TabIndex = 8;
             this.button8.Text = "dodaj avion";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 

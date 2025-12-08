@@ -90,6 +90,18 @@ namespace oop_p_k
             checkBox1.Checked = false;
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
+            if (objekti.UlogovanAdmin)
+            {
+                Admin a = new Admin();
+                this.Close();
+                a.Show();
+            }
+            else
+            {
+                Korisnik k = new Korisnik();
+                this.Close();
+                k.Show();
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

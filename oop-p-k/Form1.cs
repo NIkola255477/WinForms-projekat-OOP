@@ -52,6 +52,7 @@ namespace oop_p_k
                 if (a.ProveraUsera(username) && a.ProveraLozinke(password))
                 {
                     objekti.TrenutniAdmin = a;
+                    objekti.UlogovanAdmin = true;
                     MessageBox.Show("Uspesno ste se prijavili kao admin!");
                     this.Hide();
                     Admin formAdmin = new Admin();
@@ -65,6 +66,7 @@ namespace oop_p_k
                 if (korisnik.ProveraLozinke(password) && korisnik.ProveraUsera(username))
                 {
                     objekti.TrenutniKorisnik = korisnik;
+                    objekti.UlogovanAdmin = false;
                     MessageBox.Show("Uspesno ste se prijavili kao korisnik!");
                     this.Hide();
                     Korisnik formKorisnik = new Korisnik();

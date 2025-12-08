@@ -232,6 +232,7 @@ namespace oop_p_k
         public static Dictionary<int, Avion> Avioni = new Dictionary<int, Avion>();
         public static Dictionary<int, Let> Letovi = new Dictionary<int, Let>();
         public const double cenaGoriva = 100;
+        public static bool UlogovanAdmin = false;
         public static double RacunanjeUdaljenostiAerodromaNaZemlji(
     string lat1s, string lon1s,
     string lat2s, string lon2s)

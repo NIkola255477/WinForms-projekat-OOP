@@ -37,6 +37,9 @@ namespace oop_p_k
                 return;
             }
             objekti.Avioni.Add(objekti.Avioni.Count, new Avion(markamodel, kapacitet, 0.0, dostupan, mestoskladistenja, potrosnja));
+            Admin a = new Admin();
+            this.Close();
+            a.Show();
         }
     }
 }
