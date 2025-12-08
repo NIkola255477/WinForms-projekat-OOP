@@ -36,7 +36,7 @@ namespace oop_p_k
         private void button1_Click(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text)
-                               || string.IsNullOrEmpty(textBox3.Text) || (checkBox1.Checked && string.IsNullOrEmpty(textBox4.Text)))
+                               || string.IsNullOrEmpty(textBox3.Text))
             {
                 MessageBox.Show("Popunite sva obavezna polja!", "Greska",
                                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -66,21 +66,37 @@ namespace oop_p_k
             {
                 noviid = objekti.Letovi.Keys.Max() + 1;
             }
-
-            if (checkBox1.Checked)
+            if (objekti.UlogovanAdmin)
             {
-                objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste, 
-                                       dateTimePicker1.Value, dateTimePicker2.Value,
-                                       textBox1.Text, brojMesta, textBox2.Text, textBox4.Text));
+                if (checkBox1.Checked)
+                {
+                    objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste,
+                                           dateTimePicker1.Value, dateTimePicker2.Value,
+                                           textBox1.Text, brojMesta, textBox2.Text, textBox4.Text));
+                }
+                else
+                {
+                    objekti.Letovi.Add(noviid, new ObicanLet(polaziste, odrediste,
+                                           dateTimePicker1.Value, dateTimePicker2.Value,
+                                           textBox1.Text, brojMesta, textBox2.Text));
+                }
             }
             else
             {
-                objekti.Letovi.Add(noviid, new ObicanLet(polaziste, odrediste,
-                                       dateTimePicker1.Value, dateTimePicker2.Value,
-                                       textBox1.Text, brojMesta, textBox2.Text));
+                if (checkBox1.Checked)
+                {
+                    objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste,
+                                           dateTimePicker1.Value, dateTimePicker2.Value,
+                                           textBox1.Text, brojMesta, textBox2.Text, textBox4.Text));
+                    objekti.Letovi[noviid].RezervisiKartu(objekti.TrenutniKorisnik);
+                }
+                else
+                {
+                    MessageBox.Show("morate checkirati da rezervisete charter","greska",
+                        MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
             }
-            
-            MessageBox.Show("Let je uspesno dodat!", "Uspeh",
+            MessageBox.Show("Let je uspesno napravljen!", "Uspeh",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             textBox1.Clear();

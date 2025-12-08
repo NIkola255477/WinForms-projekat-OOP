@@ -39,11 +39,11 @@ namespace oop_p_k
         protected string Prezime { get; set; }
         protected string Email { get; set; }
         protected string Lozinka { get; set; }
-        protected string BrojTelefona { get; set; }
+        public int BrojTelefona { get; set; }
         protected string BrojPasosa { get; set; }
         protected string Username { get; set; }
-        protected List<Let> Rezervacije { get; set; }
-        public korisnik(string ime, string prezime, string email, string lozinka, string brojTelefona, string brojPasosa, string username)
+        public List<Let> Rezervacije { get; set; }
+        public korisnik(string ime, string prezime, string email, string lozinka, int brojTelefona, string brojPasosa, string username)
         {
             Ime = ime;
             Prezime = prezime;
@@ -65,6 +65,14 @@ namespace oop_p_k
         public void PromeniLozinku(string novaLozinka)
         {
             Lozinka = novaLozinka;
+        }
+        public void DodajRezervaciju(Let let)
+        {
+            Rezervacije.Add(let);
+        }
+        public void OtkaziRezervaciju(Let let)
+        {
+            Rezervacije.Remove(let);
         }
     }
     public class Aerodrom
@@ -120,14 +128,14 @@ namespace oop_p_k
     }
     public abstract class Let
     {
-        protected Aerodrom Polaziste { get; set; }
-        protected Aerodrom Odrediste { get; set; }
-        protected DateTime VremePolaska { get; set; }
-        protected DateTime VremeDolaska { get; set; }
-        protected string BrojLeta { get; set; }
-        protected double BrojMesta { get; set; }
-        protected string Kompanija { get; set; }
-        protected List<korisnik> Rezervacije { get; set; }
+        public Aerodrom Polaziste { get; set; }
+        public Aerodrom Odrediste { get; set; }
+        public DateTime VremePolaska { get; set; }
+        public DateTime VremeDolaska { get; set; }
+        public string BrojLeta { get; set; }
+        public double BrojMesta { get; set; }
+        public string Kompanija { get; set; }
+        public List<korisnik> Rezervacije { get; set; }
         public Let(Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija)
         {
             Polaziste = polaziste;

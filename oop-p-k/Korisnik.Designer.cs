@@ -56,6 +56,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "rezervisi";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -94,6 +95,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "prikazi letove";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -118,6 +120,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "Korisnik";
             this.Text = "Korisnik";
+            this.Load += new System.EventHandler(this.Korisnik_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
