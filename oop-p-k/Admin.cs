@@ -127,9 +127,49 @@ namespace oop_p_k
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (letovi)
+            if (!letovi)
             {
+                MessageBox.Show("Prvo ucitajte letove!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate selektovati let koji zelite da obrisete!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Let selektovaniLet = dataGridView1.SelectedRows[0].DataBoundItem as Let;
+            
+            if (selektovaniLet == null)
+            {
+                MessageBox.Show("Greska pri izboru leta!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult rezultat = MessageBox.Show("Da li ste sigurni da zelite da obrisete ovaj let?",
+                                         "Potvrda brisanja",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            if (rezultat == DialogResult.Yes)
+            {
+                int kljucZaBrisanje = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet).Key;
                 
+                if (objekti.Letovi.Remove(kljucZaBrisanje))
+                {
+                    MessageBox.Show("Let je uspesno obrisan!", "Uspeh",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UcitajLetove();
+                }
+                else
+                {
+                    MessageBox.Show("Greska pri brisanju leta!", "Greska",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
