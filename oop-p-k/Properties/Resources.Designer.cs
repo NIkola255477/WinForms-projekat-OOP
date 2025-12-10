@@ -69,5 +69,15 @@ namespace oop_p_k.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Nenaslovljeni_dizajn__9_ {
+            get {
+                object obj = ResourceManager.GetObject("Nenaslovljeni dizajn (9)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

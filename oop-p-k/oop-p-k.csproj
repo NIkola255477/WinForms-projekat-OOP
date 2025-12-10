@@ -135,5 +135,8 @@
   <ItemGroup>
     <None Include="Resources\Nenaslovljeni dizajn %2812%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nenaslovljeni dizajn %289%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
