@@ -24,6 +24,7 @@ namespace oop_p_k
             objekti.TrenutniAdmin = null;
             objekti.TrenutniKorisnik = null;
             objekti.UlogovanAdmin = false;
+            objekti.InicijalizacijaObj();
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -53,7 +54,6 @@ namespace oop_p_k
                 {
                     objekti.TrenutniAdmin = a;
                     objekti.UlogovanAdmin = true;
-                    MessageBox.Show("Uspesno ste se prijavili kao admin!");
                     this.Hide();
                     Admin formAdmin = new Admin();
                     formAdmin.ShowDialog();
@@ -67,7 +67,6 @@ namespace oop_p_k
                 {
                     objekti.TrenutniKorisnik = korisnik;
                     objekti.UlogovanAdmin = false;
-                    MessageBox.Show("Uspesno ste se prijavili kao korisnik!");
                     this.Hide();
                     Korisnik formKorisnik = new Korisnik();
                     formKorisnik.ShowDialog();
@@ -75,6 +74,8 @@ namespace oop_p_k
                     return;
                 }
             }
+            MessageBox.Show("Unesite korisnicko ime i lozinku!", "Greska",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void button2_Click(object sender, EventArgs e)

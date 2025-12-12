@@ -49,7 +49,7 @@ namespace oop_p_k
                 }
             }
             objekti.Korisnici.Add(brT,new korisnik(ime, prezime, email, lozinka, brT, brojPasosa, username));
-            json.SacuvajK(objekti.Korisnici);
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             MessageBox.Show("Uspesno ste se registrovali!");
             Form1 form1 = new Form1();
             form1.ShowDialog();

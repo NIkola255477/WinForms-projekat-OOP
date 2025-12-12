@@ -34,7 +34,7 @@ namespace oop_p_k
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
             dataGridView1.AutoResizeColumns();
-            letovi = true;
+            rezerevacije = true;
         }
         public void UcitajLetove()
         {
@@ -132,8 +132,8 @@ namespace oop_p_k
         private void button6_Click(object sender, EventArgs e)
         {
             doadavanjeLeta d = new doadavanjeLeta();
+            d.ShowDialog();
             this.Close();
-            d.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -142,8 +142,8 @@ namespace oop_p_k
             objekti.TrenutniAdmin = null;
             objekti.UlogovanAdmin = false;
             Form1 forma1 = new Form1();
+            forma1.ShowDialog();
             this.Close();
-            forma1.Show();
         }
     }
 }

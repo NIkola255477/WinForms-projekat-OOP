@@ -257,6 +257,7 @@
             this.Controls.Add(this.label1);
             this.Name = "doadavanjeLeta";
             this.Text = "doadavanjeLeta";
+            this.Load += new System.EventHandler(this.doadavanjeLeta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

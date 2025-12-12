@@ -31,13 +31,13 @@ namespace oop_p_k
             //string ime, string prezime, string email, string lozinka, string brojTelefona, string brojPasosa, string username
             if (dataGridView1.Columns.Count > 0)
             {
-                dataGridView1.Columns["username"].DisplayIndex = 0;
-                dataGridView1.Columns["ime"].DisplayIndex = 1;
-                dataGridView1.Columns["prezime"].DisplayIndex = 2;
-                dataGridView1.Columns["email"].DisplayIndex = 3;
-                dataGridView1.Columns["lozinka"].DisplayIndex = 4;
-                dataGridView1.Columns["brojTelefona"].DisplayIndex = 5;
-                dataGridView1.Columns["brojPasosa"].DisplayIndex = 6;
+                dataGridView1.Columns["Ime"].DisplayIndex = 1;
+                dataGridView1.Columns["Prezime"].DisplayIndex = 2;
+                dataGridView1.Columns["Email"].DisplayIndex = 3;
+                dataGridView1.Columns["Lozinka"].DisplayIndex = 4;
+                dataGridView1.Columns["BrojTelefona"].DisplayIndex = 5;
+                dataGridView1.Columns["BrojPasosa"].DisplayIndex = 6;
+                dataGridView1.Columns["Username"].DisplayIndex = 0;
             }
             dataGridView1.AutoResizeColumns();
             korisnici = true;
@@ -52,12 +52,12 @@ namespace oop_p_k
             //string markaModel, int kapacitet, double maksimalnaDuzinaLeta, bool dostupan, string mestoSkladistenja, double potrosnjaGorivapoH
             if (dataGridView1.Columns.Count > 0)
             {
-                dataGridView1.Columns["markaModel"].DisplayIndex = 0;
-                dataGridView1.Columns["kapacitet"].DisplayIndex = 1;
-                dataGridView1.Columns["maksimalnaDuzinaLeta"].DisplayIndex = 2;
-                dataGridView1.Columns["dostupan"].DisplayIndex = 3;
-                dataGridView1.Columns["mestoSkladistenja"].DisplayIndex = 4;
-                dataGridView1.Columns["potrosnjaGorivapoH"].DisplayIndex = 5;
+                dataGridView1.Columns["MarkaModel"].DisplayIndex = 0;
+                dataGridView1.Columns["Kapacitet"].DisplayIndex = 1;
+                dataGridView1.Columns["MaksimalnaDuzinaLeta"].DisplayIndex = 2;
+                dataGridView1.Columns["Dostupan"].DisplayIndex = 3;
+                dataGridView1.Columns["MestoSkladistenja"].DisplayIndex = 4;
+                dataGridView1.Columns["PotrosnjaGorivapoH"].DisplayIndex = 5;
             }
             dataGridView1.AutoResizeColumns();
             korisnici = false;
@@ -96,7 +96,7 @@ namespace oop_p_k
                 dataGridView1.Columns["naziv"].DisplayIndex = 0;
                 dataGridView1.Columns["grad"].DisplayIndex = 1;
                 dataGridView1.Columns["drzava"].DisplayIndex = 2;
-                dataGridView1.Columns["latitude"].DisplayIndex = 3;
+                dataGridView1.Columns["laditude"].DisplayIndex = 3;
                 dataGridView1.Columns["longitude"].DisplayIndex = 4;
             }
             dataGridView1.AutoResizeColumns();
@@ -179,8 +179,8 @@ namespace oop_p_k
             objekti.TrenutniAdmin = null;
             objekti.UlogovanAdmin = false;
             Form1 forma1 = new Form1();
+            forma1.ShowDialog();
             this.Close();
-            forma1.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -222,22 +222,22 @@ namespace oop_p_k
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
-            this.Hide();
-            dodavanjeLeta.Show();
+            dodavanjeLeta.ShowDialog();
+            this.Close();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             dodavanje_aviona dodavanje_Aviona = new dodavanje_aviona();
-            this.Hide();
-            dodavanje_Aviona.Show();
+            dodavanje_Aviona.ShowDialog();
+            this.Close();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
-            this.Hide();
-            dodavanjeLeta.Show();
+            dodavanjeLeta.ShowDialog();
+            this.Close();
         }
     }
 }

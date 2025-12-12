@@ -26,7 +26,7 @@ namespace oop_p_k
         }
         public bool ProveraUsera(string unosUsera)
         {
-            return unosUsera == Username;
+            return unosUsera.ToLower() == Username.ToLower();
         }
         public void PromeniLozinku(string novaLozinka)
         {
@@ -35,13 +35,13 @@ namespace oop_p_k
     }
     public class korisnik
     {
-        protected string Ime { get; set; }
-        protected string Prezime { get; set; }
-        protected string Email { get; set; }
-        protected string Lozinka { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string Email { get; set; }
+        public string Lozinka { get; set; }
         public int BrojTelefona { get; set; }
-        protected string BrojPasosa { get; set; }
-        protected string Username { get; set; }
+        public string BrojPasosa { get; set; }
+        public string Username { get; set; }
         public List<Let> Rezervacije { get; set; }
         public korisnik(string ime, string prezime, string email, string lozinka, int brojTelefona, string brojPasosa, string username)
         {
@@ -98,12 +98,12 @@ namespace oop_p_k
     }
     public class Avion
     {
-        private string MarkaModel { get; set; }
-        private int Kapacitet { get; set; }
-        private double MaksimalnaDuzinaLeta { get; set; }
-        private bool Dostupan { get; set; }
-        private Aerodrom MestoSkladistenja { get; set; }
-        private double PotrosnjaGorivapoH { get; set; }
+        public string MarkaModel { get; set; }
+        public int Kapacitet { get; set; }
+        public double MaksimalnaDuzinaLeta { get; set; }
+        public bool Dostupan { get; set; }
+        public Aerodrom MestoSkladistenja { get; set; }
+        public double PotrosnjaGorivapoH { get; set; }
         public Avion(string markaModel, int kapacitet, double maksimalnaDuzinaLeta, bool dostupan, Aerodrom mestoSkladistenja, double potrosnjaGorivapoH)
         {
             MarkaModel = markaModel;
@@ -207,11 +207,13 @@ namespace oop_p_k
         }
         public override double IzracunajUdaljenostLeta()
         {
-            return objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, Odrediste.Laditude, Odrediste.Longitude);
+            return objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude,
+                Odrediste.Laditude, Odrediste.Longitude);
         }
         public override double IzracunajCenuKarte()
         {
-            double km = objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, Odrediste.Laditude, Odrediste.Longitude);
+            double km = objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, 
+                Odrediste.Laditude, Odrediste.Longitude);
             double ukupniTroskovi = fiksni + (varTroskovi * km);
             return (ukupniTroskovi / BrojMesta) * profit;
         }
@@ -223,7 +225,8 @@ namespace oop_p_k
         {
             Rezervacije.Remove(k);
         }
-        public override void IzmeniLet(Aerodrom novoPolaziste, Aerodrom novoOdrediste, DateTime novoVremePolaska, DateTime novoVremeDolaska)
+        public override void IzmeniLet(Aerodrom novoPolaziste, Aerodrom novoOdrediste,
+            DateTime novoVremePolaska, DateTime novoVremeDolaska)
         {
             Polaziste = novoPolaziste;
             Odrediste = novoOdrediste;
@@ -241,6 +244,20 @@ namespace oop_p_k
         public static Dictionary<int, Let> Letovi = new Dictionary<int, Let>();
         public const double cenaGoriva = 100;
         public static bool UlogovanAdmin = false;
+        public static void InicijalizacijaObj()
+        {
+            Admini.Add(1, new admin("Nikola", "CssMaster"));
+            Admini.Add(2, new admin("Aca","NajboljiProfesor"));
+            Admini.Add(3, new admin("Miha","miha"));
+            Admini.Add(4, new admin("Foku","Foku"));
+            Korisnici.Add(0600929342,new korisnik("Neko","Nekic","asd@gmail.com","nekic", 0600929342,"a2168as","Neko"));
+            Aerodrom polaziste = aerodromi.aerod[0];
+            Aerodrom dolaziste = aerodromi.aerod[67];
+            DateTime vremep = DateTime.Now.AddHours(5);
+            DateTime vremenad = vremep.AddHours(2);
+            Letovi.Add(1,new ObicanLet(polaziste, dolaziste,vremep,vremenad,"ju549",200,"AirSerbia"));
+            Avioni.Add(1,new Avion("AirBus",200,1200000,true,polaziste,1200));
+        }
         public static double RacunanjeUdaljenostiAerodromaNaZemlji(
     string lat1s, string lon1s,
     string lat2s, string lon2s)

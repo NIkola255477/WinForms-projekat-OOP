@@ -44,7 +44,8 @@ namespace oop_p_k
             }
             Aerodrom polaziste = (Aerodrom)comboBox1.SelectedItem;
             Aerodrom odrediste = (Aerodrom)comboBox2.SelectedItem;
-            if (!double.TryParse(textBox3.Text, out double brojMesta))
+            int brojMesta;
+            if (!int.TryParse(textBox2.Text, out brojMesta))
             {
                 MessageBox.Show("Broj mesta mora biti broj!", "Greska",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,13 +73,13 @@ namespace oop_p_k
                 {
                     objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste,
                                            dateTimePicker1.Value, dateTimePicker2.Value,
-                                           textBox1.Text, brojMesta, textBox2.Text, textBox4.Text));
+                                           textBox1.Text, brojMesta, textBox3.Text, textBox4.Text));
                 }
                 else
                 {
                     objekti.Letovi.Add(noviid, new ObicanLet(polaziste, odrediste,
                                            dateTimePicker1.Value, dateTimePicker2.Value,
-                                           textBox1.Text, brojMesta, textBox2.Text));
+                                           textBox1.Text, brojMesta, textBox3.Text));
                 }
             }
             else
@@ -87,7 +88,7 @@ namespace oop_p_k
                 {
                     objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste,
                                            dateTimePicker1.Value, dateTimePicker2.Value,
-                                           textBox1.Text, brojMesta, textBox2.Text, textBox4.Text));
+                                           textBox1.Text, brojMesta, textBox3.Text, textBox4.Text));
                     objekti.Letovi[noviid].RezervisiKartu(objekti.TrenutniKorisnik);
                 }
                 else
@@ -108,15 +109,18 @@ namespace oop_p_k
             dateTimePicker2.Value = DateTime.Now;
             if (objekti.UlogovanAdmin)
             {
+                json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
                 Admin a = new Admin();
+                a.ShowDialog();
                 this.Close();
-                a.Show();
+                
             }
             else
             {
+                json.Sacuvaj(objekti.Admini,objekti.Korisnici,objekti.Letovi,objekti.Avioni);
                 Korisnik k = new Korisnik();
+                k.ShowDialog();
                 this.Close();
-                k.Show();
             }
         }
 
@@ -137,6 +141,11 @@ namespace oop_p_k
                 textBox4.Enabled = false;
                 textBox4.Visible = false;
             }
+        }
+
+        private void doadavanjeLeta_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
