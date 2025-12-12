@@ -236,8 +236,8 @@ namespace oop_p_k
         private void button7_Click(object sender, EventArgs e)
         {
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
-            dodavanjeLeta.ShowDialog();
             this.Close();
+            dodavanjeLeta.ShowDialog();
         }
     }
 }

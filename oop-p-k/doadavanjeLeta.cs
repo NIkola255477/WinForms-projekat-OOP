@@ -113,7 +113,7 @@ namespace oop_p_k
                 Admin a = new Admin();
                 a.ShowDialog();
                 this.Close();
-                
+                return;
             }
             else
             {
@@ -121,6 +121,7 @@ namespace oop_p_k
                 Korisnik k = new Korisnik();
                 k.ShowDialog();
                 this.Close();
+                return;
             }
         }
 

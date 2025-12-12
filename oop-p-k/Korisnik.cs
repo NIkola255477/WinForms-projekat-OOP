@@ -132,6 +132,7 @@ namespace oop_p_k
         private void button6_Click(object sender, EventArgs e)
         {
             doadavanjeLeta d = new doadavanjeLeta();
+
             d.ShowDialog();
             this.Close();
         }
@@ -144,6 +145,11 @@ namespace oop_p_k
             Form1 forma1 = new Form1();
             forma1.ShowDialog();
             this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
