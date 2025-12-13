@@ -32,25 +32,26 @@ namespace oop_p_k
             if (string.IsNullOrEmpty(ime) || string.IsNullOrEmpty(prezime) || string.IsNullOrEmpty(email)
                 || string.IsNullOrEmpty(lozinka) || string.IsNullOrEmpty(brojTelefona)
                 || string.IsNullOrEmpty(brojPasosa) || string.IsNullOrEmpty(username)
-                || !int.TryParse(brojTelefona,out brT) || !int.TryParse(brojPasosa,out brP)
+                || !int.TryParse(brojTelefona, out brT) || !int.TryParse(brojPasosa, out brP)
                 || !Regex.IsMatch(email, rege))
             {
                 MessageBox.Show("Popunite sva polja!", "Greska",
                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            foreach(var k in objekti.Korisnici.Values)
+            foreach (var k in objekti.Korisnici)
             {
-                if(k.ProveraUsera(username))
+                if (k.ProveraUsera(username))
                 {
                     MessageBox.Show("Korisnicko ime je zauzeto!", "Greska",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-            objekti.Korisnici.Add(brT,new korisnik(ime, prezime, email, lozinka, brT, brojPasosa, username));
+            objekti.Korisnici.Add(new korisnik(ime, prezime, email, lozinka, brT, brojPasosa, username));
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             MessageBox.Show("Uspesno ste se registrovali!");
+            this.Hide();
             Form1 form1 = new Form1();
             form1.ShowDialog();
             this.Close();

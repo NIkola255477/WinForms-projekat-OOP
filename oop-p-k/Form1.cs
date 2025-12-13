@@ -42,13 +42,13 @@ namespace oop_p_k
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
-            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Unesite korisnicko ime i lozinku!", "Greska",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            foreach (var a in objekti.Admini.Values)
+            foreach (var a in objekti.Admini)
             {
                 if (a.ProveraUsera(username) && a.ProveraLozinke(password))
                 {
@@ -61,7 +61,7 @@ namespace oop_p_k
                     return;
                 }
             }
-            foreach (var korisnik in objekti.Korisnici.Values)
+            foreach (var korisnik in objekti.Korisnici)
             {
                 if (korisnik.ProveraLozinke(password) && korisnik.ProveraUsera(username))
                 {

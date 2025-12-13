@@ -38,7 +38,7 @@ namespace oop_p_k
         public void UcitajLetove()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = objekti.Letovi.Values.ToList();
+            dataGridView1.DataSource = objekti.Letovi;
             //Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija
             if (dataGridView1.Columns.Count > 0)
             {
@@ -81,17 +81,15 @@ namespace oop_p_k
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
-            if (flight.Equals(default(KeyValuePair<int, Let>)))
+            var flight = objekti.Letovi.FirstOrDefault(x => x == selektovaniLet);
+            if (flight == null)
             {
                 MessageBox.Show("Let nije pronađen!", "Greska",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int kljuc = flight.Key;
-            objekti.TrenutniKorisnik.DodajRezervaciju(objekti.Letovi[kljuc]);
-            objekti.Letovi[kljuc].RezervisiKartu(objekti.TrenutniKorisnik);
-            objekti.Korisnici[objekti.TrenutniKorisnik.BrojTelefona] = objekti.TrenutniKorisnik;
+            objekti.TrenutniKorisnik.DodajRezervaciju(flight);
+            flight.RezervisiKartu(objekti.TrenutniKorisnik);
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
         }
 
@@ -124,18 +122,17 @@ namespace oop_p_k
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
-            if (flight.Equals(default(KeyValuePair<int, Let>)))
+            var flight = objekti.Letovi.FirstOrDefault(x => x == selektovaniLet);
+            if (flight == null)
             {
                 MessageBox.Show("Let nije pronađen!", "Greska",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int kljuc = flight.Key;
-            objekti.TrenutniKorisnik.OtkaziRezervaciju(objekti.Letovi[kljuc]);
-            objekti.Letovi[kljuc].OtkaziRezervaciju(objekti.TrenutniKorisnik);
-            objekti.Korisnici[objekti.TrenutniKorisnik.BrojTelefona] = objekti.TrenutniKorisnik;
+            objekti.TrenutniKorisnik.OtkaziRezervaciju(flight);
+            flight.OtkaziRezervaciju(objekti.TrenutniKorisnik);
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
+            Ucitajrezervacije();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -145,6 +142,7 @@ namespace oop_p_k
 
         private void button6_Click(object sender, EventArgs e)
         {
+            this.Hide();
             doadavanjeLeta d = new doadavanjeLeta();
 
             d.ShowDialog();
@@ -156,6 +154,7 @@ namespace oop_p_k
             objekti.TrenutniKorisnik = null;
             objekti.TrenutniAdmin = null;
             objekti.UlogovanAdmin = false;
+            this.Hide();
             Form1 forma1 = new Form1();
             forma1.ShowDialog();
             this.Close();

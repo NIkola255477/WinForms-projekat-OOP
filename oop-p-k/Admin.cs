@@ -27,7 +27,7 @@ namespace oop_p_k
         public void UcitajK()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = objekti.Korisnici.Values.ToList();
+            dataGridView1.DataSource = objekti.Korisnici;
             //string ime, string prezime, string email, string lozinka, string brojTelefona, string brojPasosa, string username
             if (dataGridView1.Columns.Count > 0)
             {
@@ -39,7 +39,7 @@ namespace oop_p_k
                 dataGridView1.Columns["BrojPasosa"].DisplayIndex = 6;
                 dataGridView1.Columns["Username"].DisplayIndex = 0;
             }
-            
+
             korisnici = true;
             aerodrom = false;
             avioni = false;
@@ -48,7 +48,7 @@ namespace oop_p_k
         public void UcitajAvione()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = objekti.Avioni.Values.ToList();
+            dataGridView1.DataSource = objekti.Avioni;
             //string markaModel, int kapacitet, double maksimalnaDuzinaLeta, bool dostupan, string mestoSkladistenja, double potrosnjaGorivapoH
             if (dataGridView1.Columns.Count > 0)
             {
@@ -67,7 +67,7 @@ namespace oop_p_k
         public void UcitajLetove()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = objekti.Letovi.Values.ToList();
+            dataGridView1.DataSource = objekti.Letovi;
             //Aerodrom polaziste, Aerodrom odrediste, DateTime vremePolaska, DateTime vremeDolaska, string brojLeta, double brojMesta, string kompanija
             if (dataGridView1.Columns.Count > 0)
             {
@@ -79,7 +79,7 @@ namespace oop_p_k
                 dataGridView1.Columns["brojMesta"].DisplayIndex = 5;
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
-            
+
             korisnici = false;
             aerodrom = false;
             avioni = false;
@@ -90,7 +90,7 @@ namespace oop_p_k
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = aerodromi.aerod.ToList();
             //string naziv, string grad, string drzava, string laditude, string longitude
-            if(dataGridView1.Columns.Count > 0)
+            if (dataGridView1.Columns.Count > 0)
             {
                 dataGridView1.Columns["naziv"].DisplayIndex = 0;
                 dataGridView1.Columns["grad"].DisplayIndex = 1;
@@ -98,7 +98,7 @@ namespace oop_p_k
                 dataGridView1.Columns["laditude"].DisplayIndex = 3;
                 dataGridView1.Columns["longitude"].DisplayIndex = 4;
             }
-            
+
             korisnici = false;
             aerodrom = true;
             avioni = false;
@@ -141,7 +141,7 @@ namespace oop_p_k
             }
 
             Let selektovaniLet = dataGridView1.SelectedRows[0].DataBoundItem as Let;
-            
+
             if (selektovaniLet == null)
             {
                 MessageBox.Show("Greska pri izboru leta!", "Greska",
@@ -156,16 +156,15 @@ namespace oop_p_k
 
             if (rezultat == DialogResult.Yes)
             {
-                var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
-                if (flight.Equals(default(KeyValuePair<int, Let>)))
+                var flight = objekti.Letovi.FirstOrDefault(x => x == selektovaniLet);
+                if (flight == null)
                 {
                     MessageBox.Show("Let nije pronađen!", "Greska",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                int kljucZaBrisanje = flight.Key;
-                
-                if (objekti.Letovi.Remove(kljucZaBrisanje))
+
+                if (objekti.Letovi.Remove(flight))
                 {
                     json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
                     MessageBox.Show("Let je uspesno obrisan!", "Uspeh",
@@ -185,6 +184,7 @@ namespace oop_p_k
             objekti.TrenutniKorisnik = null;
             objekti.TrenutniAdmin = null;
             objekti.UlogovanAdmin = false;
+            this.Hide();
             Form1 forma1 = new Form1();
             forma1.ShowDialog();
             this.Close();
@@ -215,29 +215,29 @@ namespace oop_p_k
                 return;
             }
 
-                var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
-                if (flight.Equals(default(KeyValuePair<int, Let>)))
-                {
-                    MessageBox.Show("Let nije pronađen!", "Greska",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                int kljucZaBrisanje = flight.Key;
+            var flight = objekti.Letovi.FirstOrDefault(x => x == selektovaniLet);
+            if (flight == null)
+            {
+                MessageBox.Show("Let nije pronađen!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (objekti.Letovi.Remove(kljucZaBrisanje))
-                {
-                    MessageBox.Show("Let je uspesno obrisan!", "Uspeh",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    UcitajLetove();
-                }
-                else
-                {
-                    MessageBox.Show("Greska pri brisanju leta!", "Greska",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            if (objekti.Letovi.Remove(flight))
+            {
+                MessageBox.Show("Let je uspesno obrisan!", "Uspeh",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UcitajLetove();
+            }
+            else
+            {
+                MessageBox.Show("Greska pri brisanju leta!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
+            this.Hide();
             dodavanjeLeta.ShowDialog();
             this.Close();
         }
@@ -245,6 +245,7 @@ namespace oop_p_k
         private void button8_Click(object sender, EventArgs e)
         {
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
+            this.Hide();
             dodavanje_aviona dodavanje_Aviona = new dodavanje_aviona();
             dodavanje_Aviona.ShowDialog();
             this.Close();
@@ -253,6 +254,7 @@ namespace oop_p_k
         private void button7_Click(object sender, EventArgs e)
         {
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
+            this.Hide();
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
             dodavanjeLeta.ShowDialog();
             this.Close();

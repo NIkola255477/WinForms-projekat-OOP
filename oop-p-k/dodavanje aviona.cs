@@ -29,7 +29,7 @@ namespace oop_p_k
             bool dostupan = checkBox1.Checked;
             Aerodrom mestoskladistenja = (Aerodrom)comboBox1.SelectedItem;
             double potrosnja;
-            if (string.IsNullOrEmpty(markamodel) || comboBox1.SelectedIndex==-1
+            if (string.IsNullOrEmpty(markamodel) || comboBox1.SelectedIndex == -1
                                || string.IsNullOrEmpty(textBox4.Text)
                                || !double.TryParse(textBox4.Text, out potrosnja)
                                || kapacitet <= 0 || potrosnja <= 0)
@@ -38,8 +38,9 @@ namespace oop_p_k
                                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            objekti.Avioni.Add(objekti.Avioni.Count, new Avion(markamodel, kapacitet, 0.0, dostupan, mestoskladistenja, potrosnja));
+            objekti.Avioni.Add(new Avion(markamodel, kapacitet, 0.0, dostupan, mestoskladistenja, potrosnja));
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
+            this.Hide();
             Admin a = new Admin();
             a.ShowDialog();
             this.Close();
