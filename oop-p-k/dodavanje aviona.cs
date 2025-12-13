@@ -30,7 +30,9 @@ namespace oop_p_k
             Aerodrom mestoskladistenja = (Aerodrom)comboBox1.SelectedItem;
             double potrosnja;
             if (string.IsNullOrEmpty(markamodel) || comboBox1.SelectedIndex==-1
-                               || !double.TryParse(textBox4.Text, out potrosnja))
+                               || string.IsNullOrEmpty(textBox4.Text)
+                               || !double.TryParse(textBox4.Text, out potrosnja)
+                               || kapacitet <= 0 || potrosnja <= 0)
             {
                 MessageBox.Show("Popunite sva polja ispravno!", "Greska",
                                                           MessageBoxButtons.OK, MessageBoxIcon.Error);

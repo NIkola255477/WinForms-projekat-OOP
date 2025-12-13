@@ -50,12 +50,18 @@ namespace oop_p_k
                                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1)
+            {
+                MessageBox.Show("Morate izabrati polaziste i odrediste!", "Greska",
+                                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             Aerodrom polaziste = (Aerodrom)comboBox1.SelectedItem;
             Aerodrom odrediste = (Aerodrom)comboBox2.SelectedItem;
             int brojMesta;
-            if (!int.TryParse(textBox2.Text, out brojMesta))
+            if (!int.TryParse(textBox2.Text, out brojMesta) || brojMesta <= 0)
             {
-                MessageBox.Show("Broj mesta mora biti broj!", "Greska",
+                MessageBox.Show("Broj mesta mora biti pozitivan broj!", "Greska",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -79,6 +85,12 @@ namespace oop_p_k
             {
                 if (checkBox1.Checked)
                 {
+                    if (string.IsNullOrEmpty(textBox4.Text))
+                    {
+                        MessageBox.Show("Morate uneti specijalne zahteve za charter!", "Greska",
+                                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste,
                                            dateTimePicker1.Value, dateTimePicker2.Value,
                                            textBox1.Text, brojMesta, textBox3.Text, textBox4.Text));
@@ -94,6 +106,12 @@ namespace oop_p_k
             {
                 if (checkBox1.Checked)
                 {
+                    if (string.IsNullOrEmpty(textBox4.Text))
+                    {
+                        MessageBox.Show("Morate uneti specijalne zahteve za charter!", "Greska",
+                                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     objekti.Letovi.Add(noviid, new Charter(polaziste, odrediste,
                                            dateTimePicker1.Value, dateTimePicker2.Value,
                                            textBox1.Text, brojMesta, textBox3.Text, textBox4.Text));

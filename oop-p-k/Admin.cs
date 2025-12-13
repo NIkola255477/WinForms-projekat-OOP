@@ -156,10 +156,18 @@ namespace oop_p_k
 
             if (rezultat == DialogResult.Yes)
             {
-                int kljucZaBrisanje = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet).Key;
+                var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
+                if (flight.Equals(default(KeyValuePair<int, Let>)))
+                {
+                    MessageBox.Show("Let nije pronađen!", "Greska",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int kljucZaBrisanje = flight.Key;
                 
                 if (objekti.Letovi.Remove(kljucZaBrisanje))
                 {
+                    json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
                     MessageBox.Show("Let je uspesno obrisan!", "Uspeh",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UcitajLetove();
@@ -207,7 +215,14 @@ namespace oop_p_k
                 return;
             }
 
-                int kljucZaBrisanje = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet).Key;
+                var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
+                if (flight.Equals(default(KeyValuePair<int, Let>)))
+                {
+                    MessageBox.Show("Let nije pronađen!", "Greska",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int kljucZaBrisanje = flight.Key;
 
                 if (objekti.Letovi.Remove(kljucZaBrisanje))
                 {
@@ -222,6 +237,7 @@ namespace oop_p_k
                 }
             json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             dodavanjeLeta.ShowDialog();
             this.Close();
         }

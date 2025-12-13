@@ -60,7 +60,7 @@ namespace oop_p_k
         }
         public bool ProveraUsera(string unosUsera)
         {
-            return unosUsera == Username;
+            return unosUsera.ToLower() == Username.ToLower();
         }
         public void PromeniLozinku(string novaLozinka)
         {
@@ -168,7 +168,7 @@ namespace oop_p_k
         public override double IzracunajTrajanjeLeta()
         {
             TimeSpan trajanje = VremeDolaska - VremePolaska;
-            return trajanje.TotalHours;
+            return Math.Max(0, trajanje.TotalHours);
         }
         public override double IzracunajUdaljenostLeta()
         {
@@ -203,7 +203,7 @@ namespace oop_p_k
         }
         public override double IzracunajTrajanjeLeta()
         {
-            return (VremeDolaska - VremePolaska).TotalHours;
+            return Math.Max(0, (VremeDolaska - VremePolaska).TotalHours);
         }
         public override double IzracunajUdaljenostLeta()
         {
@@ -212,6 +212,8 @@ namespace oop_p_k
         }
         public override double IzracunajCenuKarte()
         {
+            if (BrojMesta <= 0)
+                return 0;
             double km = objekti.RacunanjeUdaljenostiAerodromaNaZemlji(Polaziste.Laditude, Polaziste.Longitude, 
                 Odrediste.Laditude, Odrediste.Longitude);
             double ukupniTroskovi = fiksni + (varTroskovi * km);
@@ -251,12 +253,15 @@ namespace oop_p_k
             Admini.Add(3, new admin("Miha","miha"));
             Admini.Add(4, new admin("Foku","Foku"));
             Korisnici.Add(0600929342,new korisnik("Neko","Nekic","asd@gmail.com","nekic", 0600929342,"a2168as","Neko"));
-            Aerodrom polaziste = aerodromi.aerod[0];
-            Aerodrom dolaziste = aerodromi.aerod[67];
-            DateTime vremep = DateTime.Now.AddHours(5);
-            DateTime vremenad = vremep.AddHours(2);
-            Letovi.Add(1,new ObicanLet(polaziste, dolaziste,vremep,vremenad,"ju549",200,"AirSerbia"));
-            Avioni.Add(1,new Avion("AirBus",200,1200000,true,polaziste,1200));
+            if (aerodromi.aerod.Count >= 2)
+            {
+                Aerodrom polaziste = aerodromi.aerod[0];
+                Aerodrom dolaziste = aerodromi.aerod[1];
+                DateTime vremep = DateTime.Now.AddHours(5);
+                DateTime vremenad = vremep.AddHours(2);
+                Letovi.Add(1,new ObicanLet(polaziste, dolaziste,vremep,vremenad,"ju549",200,"AirSerbia"));
+                Avioni.Add(1,new Avion("AirBus",200,1200000,true,polaziste,1200));
+            }
         }
         public static double RacunanjeUdaljenostiAerodromaNaZemlji(
     string lat1s, string lon1s,

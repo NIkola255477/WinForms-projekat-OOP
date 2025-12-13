@@ -81,10 +81,18 @@ namespace oop_p_k
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int kljuc = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet).Key;
+            var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
+            if (flight.Equals(default(KeyValuePair<int, Let>)))
+            {
+                MessageBox.Show("Let nije pronađen!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int kljuc = flight.Key;
             objekti.TrenutniKorisnik.DodajRezervaciju(objekti.Letovi[kljuc]);
             objekti.Letovi[kljuc].RezervisiKartu(objekti.TrenutniKorisnik);
             objekti.Korisnici[objekti.TrenutniKorisnik.BrojTelefona] = objekti.TrenutniKorisnik;
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
         }
 
         private void Korisnik_Load(object sender, EventArgs e)
@@ -116,10 +124,18 @@ namespace oop_p_k
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int kljuc = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet).Key;
+            var flight = objekti.Letovi.FirstOrDefault(x => x.Value == selektovaniLet);
+            if (flight.Equals(default(KeyValuePair<int, Let>)))
+            {
+                MessageBox.Show("Let nije pronađen!", "Greska",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int kljuc = flight.Key;
             objekti.TrenutniKorisnik.OtkaziRezervaciju(objekti.Letovi[kljuc]);
             objekti.Letovi[kljuc].OtkaziRezervaciju(objekti.TrenutniKorisnik);
             objekti.Korisnici[objekti.TrenutniKorisnik.BrojTelefona] = objekti.TrenutniKorisnik;
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
         }
 
         private void button3_Click(object sender, EventArgs e)
