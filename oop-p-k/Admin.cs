@@ -220,6 +220,7 @@ namespace oop_p_k
                     MessageBox.Show("Greska pri brisanju leta!", "Greska",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
             dodavanjeLeta.ShowDialog();
             this.Close();
@@ -227,6 +228,7 @@ namespace oop_p_k
 
         private void button8_Click(object sender, EventArgs e)
         {
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             dodavanje_aviona dodavanje_Aviona = new dodavanje_aviona();
             dodavanje_Aviona.ShowDialog();
             this.Close();
@@ -234,9 +236,10 @@ namespace oop_p_k
 
         private void button7_Click(object sender, EventArgs e)
         {
+            json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
             doadavanjeLeta dodavanjeLeta = new doadavanjeLeta();
-            this.Close();
             dodavanjeLeta.ShowDialog();
+            this.Close();
         }
     }
 }

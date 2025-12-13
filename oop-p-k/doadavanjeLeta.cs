@@ -118,16 +118,12 @@ namespace oop_p_k
             if (objekti.UlogovanAdmin)
             {
                 json.Sacuvaj(objekti.Admini, objekti.Korisnici, objekti.Letovi, objekti.Avioni);
-                Admin a = new Admin();
-                a.ShowDialog();
                 this.Close();
                 return;
             }
             else
             {
                 json.Sacuvaj(objekti.Admini,objekti.Korisnici,objekti.Letovi,objekti.Avioni);
-                Korisnik k = new Korisnik();
-                k.ShowDialog();
                 this.Close();
                 return;
             }

@@ -46,7 +46,7 @@ namespace oop_p_k
             , Dictionary<int, Let> Letovi, Dictionary<int, Avion> Avioni)
 
         {
-            if (!File.Exists(FileLetovi) || !File.Exists(FileAvioni) || !File.Exists(FileAdmin) || File.Exists(FileKorisnici))
+            if (!File.Exists(FileLetovi) || !File.Exists(FileAvioni) || !File.Exists(FileAdmin) || !File.Exists(FileKorisnici))
             {
                 return;
             }
