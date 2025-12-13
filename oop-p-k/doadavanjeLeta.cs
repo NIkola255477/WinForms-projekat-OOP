@@ -31,6 +31,14 @@ namespace oop_p_k
             comboBox2.DataSource = new List<Aerodrom>(aerodromi.aerod);
             comboBox2.DisplayMember = "Grad";
             comboBox2.ValueMember = "Naziv";
+            if (objekti.UlogovanAdmin)
+            {
+                button1.Text = "Dodaj let";
+            }
+            else
+            {
+                button1.Text = "Rezervisi charter let";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

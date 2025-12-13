@@ -39,7 +39,7 @@ namespace oop_p_k
                 dataGridView1.Columns["BrojPasosa"].DisplayIndex = 6;
                 dataGridView1.Columns["Username"].DisplayIndex = 0;
             }
-            dataGridView1.AutoResizeColumns();
+            
             korisnici = true;
             aerodrom = false;
             avioni = false;
@@ -59,7 +59,6 @@ namespace oop_p_k
                 dataGridView1.Columns["MestoSkladistenja"].DisplayIndex = 4;
                 dataGridView1.Columns["PotrosnjaGorivapoH"].DisplayIndex = 5;
             }
-            dataGridView1.AutoResizeColumns();
             korisnici = false;
             aerodrom = false;
             avioni = true;
@@ -80,7 +79,7 @@ namespace oop_p_k
                 dataGridView1.Columns["brojMesta"].DisplayIndex = 5;
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
-            dataGridView1.AutoResizeColumns();
+            
             korisnici = false;
             aerodrom = false;
             avioni = false;
@@ -99,7 +98,7 @@ namespace oop_p_k
                 dataGridView1.Columns["laditude"].DisplayIndex = 3;
                 dataGridView1.Columns["longitude"].DisplayIndex = 4;
             }
-            dataGridView1.AutoResizeColumns();
+            
             korisnici = false;
             aerodrom = true;
             avioni = false;

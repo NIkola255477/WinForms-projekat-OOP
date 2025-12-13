@@ -33,7 +33,6 @@ namespace oop_p_k
                 dataGridView1.Columns["brojMesta"].DisplayIndex = 5;
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
-            dataGridView1.AutoResizeColumns();
             rezerevacije = true;
         }
         public void UcitajLetove()
@@ -51,7 +50,6 @@ namespace oop_p_k
                 dataGridView1.Columns["brojMesta"].DisplayIndex = 5;
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
-            dataGridView1.AutoResizeColumns();
             letovi = true;
         }
         private void button5_Click(object sender, EventArgs e)
