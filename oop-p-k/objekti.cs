@@ -264,7 +264,7 @@ namespace oop_p_k
         public static void InicijalizacijaObj()
         {
             Admini.Add(new admin("Nikola", "CssMaster"));
-            Admini.Add(new admin("Aca", "NajboljiProfesor"));
+            Admini.Add(new admin("Aca", "a"));
             Admini.Add(new admin("Miha", "miha"));
             Admini.Add(new admin("Foku", "Foku"));
             Korisnici.Add(new korisnik("Neko", "Nekic", "asd@gmail.com", "nekic", 0600929342, "a2168as", "Neko"));

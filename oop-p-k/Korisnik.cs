@@ -34,6 +34,7 @@ namespace oop_p_k
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
             rezerevacije = true;
+            letovi = false;
         }
         public void UcitajLetove()
         {
@@ -51,6 +52,7 @@ namespace oop_p_k
                 dataGridView1.Columns["kompanija"].DisplayIndex = 6;
             }
             letovi = true;
+            rezerevacije = false;
         }
         private void button5_Click(object sender, EventArgs e)
         {
